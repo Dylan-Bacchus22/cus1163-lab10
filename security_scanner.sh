@@ -79,13 +79,11 @@ find_world_writable() {
     
            while IFS= read -r item; do
                perms=$(stat -c "%a" "$item")
-
                if[ -f "$item" ]; then
-                   echo "${RED}{FILE}${NC} $item ($perms)"
+                   echo "${RED}[FILE]${NC} $item ($perms)"
                 elif [ -d "$item" ]; then
                     echo "${RED}[DIR] ${NC} $item ($perms)"
                 fi
-
                 ((count ++))
             done < <(find "$TEST_DIR" -perm -002)
             
