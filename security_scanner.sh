@@ -81,9 +81,9 @@ find_world_writable() {
                perms=$(stat -c "%a" "$item")
 
                if[ -f "$item"]; then
-                   echo -e "${RED}{FILE}${NC} $item ($perms)"
+                   echo "${RED}{FILE}${NC} $item ($perms)"
                 elif [ -d "$item"]; then
-                    echo -e "${RED}[DIR] ${NC} $item ($perms)"
+                    echo "${RED}[DIR] ${NC} $item ($perms)"
                 fi
 
                 ((count ++))
@@ -133,7 +133,7 @@ find_executable_non_scripts() {
     # YOUR CODE HERE
     while IFS= read -r file; do
         perms=$(stat -c "%a" "$file")
-        echo -e "${YELLOW}[EXEC]${NC} $file ($perms)"
+        echo "${YELLOW}[EXEC]${NC} $file ($perms)"
         ((count++))
     done < <(find "$TEST_DIR" -type f \( -name "*.html" -o -name "*.css" -o -name "*.txt" -o -name "*.conf" \) -perm /111)    
     echo ""
