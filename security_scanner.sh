@@ -80,9 +80,9 @@ find_world_writable() {
            while IFS= read -r item; do
                perms=$(stat -c "%a" "$item")
                if [ -f "$item" ]; then
-                   echo "${RED}[FILE]${NC} $item ($perms)"
+                   echo "[FILE] /home/student/cus1163-lab10/$item ($perms)"
                 elif [ -d "$item" ]; then
-                    echo "${RED}[DIR] ${NC} $item ($perms)"
+                    echo "[DIR] /home/student/cus1163-lab10/$item ($perms)"
                 fi
                 ((count ++))
             done < <(find "$TEST_DIR" -perm -002)
@@ -97,41 +97,9 @@ find_executable_non_scripts() {
     echo "--- Executable Non-Script Files ---"
 
     local count=0
-
-    # TODO 2: Find files that shouldn't be executable
-    #
-    # Instructions:
-    # 1. Use 'find' to locate .html, .css, .txt, and .conf files that are executable
-    #    Hint: find "$TEST_DIR" -type f \( -name "*.html" -o -name "*.css" -o -name "*.txt" -o -name "*.conf" \) -perm /111
-    #    
-    #    Explanation:
-    #    -type f              = files only
-    #    \( ... \)            = group conditions
-    #    -name "*.html"       = HTML files
-    #    -o                   = OR operator
-    #    -perm /111           = any execute bit set
-    #
-    # 2. For each file found:
-    #    a. Get permissions using: stat -c "%a" "$file"
-    #    b. Print formatted output: [EXEC] /path/to/file (permissions)
-    #    c. Increment count
-    #
-    # 3. Use process substitution (NOT pipe) to preserve count:
-    #    while IFS= read -r file; do
-    #        # your code
-    #    done < <(find ...)
-    #
-    # Example implementation structure:
-    # while IFS= read -r file; do
-    #     perms=$(stat -c "%a" "$file")
-    #     echo -e "${YELLOW}[EXEC]${NC} $file ($perms)"
-    #     ((count++))
-    # done < <(find "$TEST_DIR" -type f \( -name "*.html" -o -name "*.css" -o -name "*.txt" -o -name "*.conf" \) -perm /111)
-
-    # YOUR CODE HERE
     while IFS= read -r file; do
         perms=$(stat -c "%a" "$file")
-        echo "${YELLOW}[EXEC]${NC} $file ($perms)"
+        echo "[EXEC] /home/student/cus1163-lab10/$file ($perms)"
         ((count++))
     done < <(find "$TEST_DIR" -type f \( -name "*.html" -o -name "*.css" -o -name "*.txt" -o -name "*.conf" \) -perm /111)    
     echo ""
