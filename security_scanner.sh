@@ -80,7 +80,7 @@ find_world_writable() {
            while IFS= read -r item; do
                perms=$(stat -c "%a" "$item")
 
-               if[ -f "$item"; then
+               if[ -f "$item"]; then
                    echo -e "${RED}{FILE}${NC} $item ($perms)"
                 elif [ -d "$item"]; then
                     echo -e "${RED}[DIR] ${NC} $item ($perms)"
