@@ -80,9 +80,9 @@ find_world_writable() {
            while IFS= read -r item; do
                perms=$(stat -c "%a" "$item")
                if [ -f "$item" ]; then
-                   echo "[FILE] /home/student/cus1163-lab10/$item ($perms)"
+                   echo "[FILE] $item ($perms)"
                 elif [ -d "$item" ]; then
-                    echo "[DIR] /home/student/cus1163-lab10/$item ($perms)"
+                    echo "[DIR] $item ($perms)"
                 fi
                 ((count ++))
             done < <(find "$TEST_DIR" -perm -002)
@@ -99,7 +99,7 @@ find_executable_non_scripts() {
     local count=0
     while IFS= read -r file; do
         perms=$(stat -c "%a" "$file")
-        echo "[EXEC] /home/student/cus1163-lab10/$file ($perms)"
+        echo "[EXEC] $file ($perms)"
         ((count++))
     done < <(find "$TEST_DIR" -type f \( -name "*.html" -o -name "*.css" -o -name "*.txt" -o -name "*.conf" \) -perm /111)    
     echo ""
