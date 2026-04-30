@@ -6,7 +6,7 @@
 #####################################################
 
 # Configuration
-TEST_DIR="./test_files"
+TEST_DIR="/home/student/cus1163-lab10/test_files"
 
 # Colors for output
 RED='\033[0;31m'
